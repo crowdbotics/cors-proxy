@@ -2,7 +2,7 @@
 const url = require('url')
 const pkg = require('./package.json')
 const {send} = require('micro')
-const origin = process.env.ALLOW_ORIGIN
+const origin = process.env.ALLOW_ORIGIN ? (process.env.ALLOW_ORIGIN).split(',') : undefined
 const insecure_origins = (process.env.INSECURE_HTTP_ORIGINS || '').split(',')
 const middleware = require('./middleware.js')({ origin, insecure_origins })
 
