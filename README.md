@@ -43,7 +43,7 @@ cors-proxy stop
 
 Environment variables:
 - `PORT` the port to listen to (if run with `npm start`)
-- `ALLOW_ORIGIN` the value for the 'Access-Control-Allow-Origin' CORS header
+- `ALLOW_ORIGIN` comma separated list of origins for the 'Access-Control-Allow-Origin' CORS header
 - `INSECURE_HTTP_ORIGINS` comma separated list of origins for which HTTP should be used instead of HTTPS (added to make developing against locally running git servers easier)
 
 
@@ -66,7 +66,7 @@ app.use(corsProxy(options))
 
 *The middleware doesn't use the environment variables.* The options object supports the following properties:
 
-- `origin`: _string_. The value for the 'Access-Control-Allow-Origin' CORS header
+- `origin`: _string_. The value for the 'Access-Control-Allow-Origin' CORS header. It can be either a string (single origin), array of origins. TODO: Add support for regex origin.
 - `insecure_origins`: _string[]_. Array of origins for which HTTP should be used instead of HTTPS (added to make developing against locally running git servers easier)
 - `authorization`: _(req, res, next) => void_. A middleware function you can use to handle custom authorization. Is run after filtering for git-like requests and handling CORS but before the request is proxied.
 
